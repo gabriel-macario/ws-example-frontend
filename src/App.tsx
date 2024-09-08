@@ -2,6 +2,8 @@ import { useState } from 'react';
 import useWebSocket, { ReadyState } from 'react-use-websocket';
 import './App.css';
 
+import { Button } from "@/components/ui/button";
+
 const WS_URL = import.meta.env.VITE_WS_URL;
 
 function App() {
@@ -17,7 +19,9 @@ function App() {
   });
 
   return (
-    <div>HELLO WORLD</div>
+    <div>
+      <Button variant="destructive">Press Me</Button>
+    </div>
   )
 }
 
