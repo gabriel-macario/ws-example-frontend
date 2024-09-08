@@ -2,13 +2,12 @@ import { useState } from 'react';
 import useWebSocket, { ReadyState } from 'react-use-websocket';
 import './App.css';
 
-import { Button } from "@/components/ui/button";
+import { InputWithButton } from './components/ChatInput';
 
 const WS_URL = import.meta.env.VITE_WS_URL;
 
 function App() {
-  const [username, setUsername] = useState('');
-  const { sendJsonMessage, readyState } = useWebSocket(WS_URL, {
+  const {} = useWebSocket(WS_URL, {
     onOpen: () => {
       console.log(`WebSocket connection established.`);;
     },
@@ -20,7 +19,7 @@ function App() {
 
   return (
     <div>
-      <Button variant="destructive">Press Me</Button>
+      <InputWithButton/>
     </div>
   )
 }
