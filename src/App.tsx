@@ -18,7 +18,7 @@ function App() {
   });
 
   return (
-    <div id="chatroom" className="flex">
+    <div id="chatroom" className="flex ">
       <ChatDisplay />
       <InputWithButton/>
     </div>
