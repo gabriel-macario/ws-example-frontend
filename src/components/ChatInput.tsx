@@ -2,7 +2,7 @@ import { useCallback, useState} from 'react';
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import useWebSocket, { ReadyState } from 'react-use-websocket';
+import useWebSocket from 'react-use-websocket';
 
 const WS_URL = import.meta.env.VITE_WS_URL;
 
@@ -14,7 +14,6 @@ export function InputWithButton() {
 
     function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
         setMessage(e.target.value);
-        console.log(`message: ${message}`)
     }
 
     function handleInputKeydown(e: React.KeyboardEvent) {
@@ -24,12 +23,12 @@ export function InputWithButton() {
     }
 
     const handleButtonSubmit = useCallback(() => {
-        console.log(`SENDING: ${message}`);
         sendMessage(message);
+        setMessage("");
     }, [message])
 
     return (
-        <div className="flex w-full max-w-sm items-center space-x-2">
+        <div className="flex w-full max-w-sm items-center space-x-2 pt-6">
             <Input
                 onChange={handleInputChange}
                 onKeyDown={handleInputKeydown}

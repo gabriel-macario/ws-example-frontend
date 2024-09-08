@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import useWebSocket, { ReadyState } from 'react-use-websocket';
+import useWebSocket from 'react-use-websocket';
 import './App.css';
 
 import { InputWithButton } from './components/ChatInput';
+import { ChatDisplay  } from './components/ChatDisplay';
 
 const WS_URL = import.meta.env.VITE_WS_URL;
 
@@ -18,7 +18,8 @@ function App() {
   });
 
   return (
-    <div>
+    <div id="chatroom" className="flex">
+      <ChatDisplay />
       <InputWithButton/>
     </div>
   )
