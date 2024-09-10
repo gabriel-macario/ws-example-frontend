@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react';
 import './App.css';
 
 import { socket } from "@/socket";
-import { InputWithButton } from './components/ChatInput';
-import { ChatDisplay } from './components/ChatDisplay';
+import { ChatInput } from '@/components/ChatInput';
+import { ChatDisplay } from '@/components/ChatDisplay';
 
 function App() {
   const [isConnected, setIsConnected] = useState(socket.connected);
@@ -33,8 +33,8 @@ function App() {
 
   return (
     <div id="chatroom" className="flex ">
-      <ChatDisplay />
-      <InputWithButton/>
+      {/* <ChatDisplay />
+      <InputWithButton/> */}
     </div>
   )
 }

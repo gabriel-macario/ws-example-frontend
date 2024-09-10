@@ -5,7 +5,7 @@ import EventTypes from "@/enums/EventTypes";
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 
-export function InputWithButton() {
+export function ChatInput() {
     const [message, setMessage] = useState('');
 
     function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
