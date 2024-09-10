@@ -1,16 +1,12 @@
 import { useCallback, useState} from 'react';
 
+import { socket } from "@/socket";
+import EventTypes from "@/enums/EventTypes";
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import useWebSocket from 'react-use-websocket';
-
-const WS_URL = import.meta.env.VITE_WS_URL;
 
 export function InputWithButton() {
     const [message, setMessage] = useState('');
-    const { sendMessage } = useWebSocket(WS_URL, {
-      share: true,
-    });
 
     function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
         setMessage(e.target.value);
@@ -23,7 +19,7 @@ export function InputWithButton() {
     }
 
     const handleButtonSubmit = useCallback(() => {
-        sendMessage(message);
+        socket.emit(EventTypes.ChatMessage, message);
         setMessage("");
     }, [message])
 

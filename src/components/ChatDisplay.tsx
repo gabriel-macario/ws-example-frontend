@@ -1,19 +1,23 @@
 import { useEffect, useState } from "react";
-import useWebSocket from "react-use-websocket"
-
-const WS_URL = import.meta.env.VITE_WS_URL;
+import { socket } from "@/socket";
+import EventTypes from "@/enums/EventTypes";
 
 export function ChatDisplay() {
-    const [messageHistory, setMessageHistory] = useState<MessageEvent[]>([]);
-    const { lastMessage } = useWebSocket(WS_URL, {
-        share: true
-    });
+    const [messageHistory, setMessageHistory] = useState<string[]>([]);
+
+    function onChatMessageEvent(message: string) {
+        console.log("MESSAGE EVENT CALLED")
+        const newMessageHistory = [...messageHistory, message];
+        setMessageHistory(newMessageHistory);
+    }
 
     useEffect(() => {
-        if (lastMessage !== null) {
-            setMessageHistory((prev) => prev.concat(lastMessage))
+        socket.on(EventTypes.ChatMessage, onChatMessageEvent)
+
+        return () => {
+            socket.off(EventTypes.ChatMessage, onChatMessageEvent);
         }
-    }, [lastMessage]);
+    }, [messageHistory]);
 
     return (
         <>
@@ -22,7 +26,7 @@ export function ChatDisplay() {
                 <ul>
                     {messageHistory.map((message, idx) => (
                         <li key={idx} className="text-left">
-                            {message ? message.data : null}
+                            {message ? message : null}
                         </li>
                     ))}
                 </ul>
