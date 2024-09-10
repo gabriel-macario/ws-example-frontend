@@ -6,7 +6,6 @@ export function ChatDisplay() {
     const [messageHistory, setMessageHistory] = useState<string[]>([]);
 
     function onChatMessageEvent(message: string) {
-        console.log("MESSAGE EVENT CALLED")
         const newMessageHistory = [...messageHistory, message];
         setMessageHistory(newMessageHistory);
     }
