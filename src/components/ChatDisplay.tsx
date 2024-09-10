@@ -21,7 +21,7 @@ export function ChatDisplay() {
     return (
         <>
             <h1 className="bg-primary text-primary-foreground text-3xl font-bold">CHAT</h1>
-            <div>
+            <div className="grow">
                 <ul>
                     {messageHistory.map((message, idx) => (
                         <li key={idx} className="text-left">
