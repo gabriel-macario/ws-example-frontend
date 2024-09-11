@@ -1,12 +1,15 @@
-import { useCallback, useState} from 'react';
+import { useCallback, useContext, useState} from 'react';
 
 import { socket } from "@/socket";
 import EventTypes from "@/enums/EventTypes";
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { CurrentUserContext } from '@/contexts/CurrentUser';
+import { CurrentUserContextType } from '@/types/CurrentUser';
 
 export function ChatInput() {
     const [message, setMessage] = useState('');
+    const { currentUser } = useContext(CurrentUserContext) as CurrentUserContextType;
 
     function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
         setMessage(e.target.value);
@@ -19,7 +22,10 @@ export function ChatInput() {
     }
 
     const handleButtonSubmit = useCallback(() => {
-        socket.emit(EventTypes.ChatMessage, message);
+        socket.emit(EventTypes.ChatMessage, {
+            message,
+            user: currentUser
+        });
         setMessage("");
     }, [message])
 

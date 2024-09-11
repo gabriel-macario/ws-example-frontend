@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { socket } from "@/socket";
 import EventTypes from "@/enums/EventTypes";
+import { ChatMessage } from "@/types/ChatMessage";
+import { ChatMessageItem } from "@/components/ChatMessageItem";
 
 export function ChatDisplay() {
-    const [messageHistory, setMessageHistory] = useState<string[]>([]);
+    const [messageHistory, setMessageHistory] = useState<ChatMessage[]>([]);
 
-    function onChatMessageEvent(message: string) {
+    function onChatMessageEvent(message: ChatMessage) {
         const newMessageHistory = [...messageHistory, message];
         setMessageHistory(newMessageHistory);
     }
@@ -24,9 +26,7 @@ export function ChatDisplay() {
             <div className="grow">
                 <ul>
                     {messageHistory.map((message, idx) => (
-                        <li key={idx} className="text-left">
-                            {message ? message : null}
-                        </li>
+                        <ChatMessageItem chatMessage={message} key={idx} />
                     ))}
                 </ul>
             </div>
