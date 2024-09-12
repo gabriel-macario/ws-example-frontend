@@ -1,4 +1,4 @@
-import { useCallback, useContext, useState} from 'react';
+import { useCallback, useContext, useState } from 'react';
 
 import { socket } from "@/socket";
 import EventTypes from "@/enums/EventTypes";
@@ -9,7 +9,7 @@ import { CurrentUserContextType } from '@/types/CurrentUser';
 
 export function UserLogin() {
     const [usernameValue, setUsernameValue] = useState('');
-    const { currentUser, setUsername} = useContext(CurrentUserContext) as CurrentUserContextType;
+    const { currentUser, setUsername } = useContext(CurrentUserContext) as CurrentUserContextType;
 
     function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
         setUsernameValue(e.target.value);
@@ -26,7 +26,7 @@ export function UserLogin() {
     }, [usernameValue])
 
     return (
-        <div className="flex w-full max-w-sm items-center space-x-2 pt-6">
+        <div className="flex flex-col w-full max-w-sm items-center border rounded-md border-black p-1">
             <Input
                 onChange={handleInputChange}
                 onKeyDown={handleInputKeydown}
@@ -35,6 +35,7 @@ export function UserLogin() {
                 value={usernameValue}
             />
             <Button
+                className="w-full mt-2"
                 type="submit"
                 onClick={handleButtonSubmit}>
                 Login
