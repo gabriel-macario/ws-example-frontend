@@ -34,10 +34,10 @@ function ChatRoom() {
   })
 
   return (
-    <div id="chatroom" className="flex ">
+    <>
       <ChatDisplay />
       <ChatInput />
-    </div>
+    </>
   )
 }
 

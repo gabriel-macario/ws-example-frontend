@@ -9,12 +9,12 @@ function App() {
   const { currentUser } = useContext(CurrentUserContext) as CurrentUserContextType
 
   return (
-    <div>
+    <>
       {
         currentUser.username ?
           <ChatRoom /> :
           <UserLogin />}
-    </div>
+    </>
   )
 }
 
